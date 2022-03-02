@@ -68,7 +68,7 @@ A demo app using docker can be spin up on binder: https://mybinder.org/v2/gh/bas
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{shinyshval} \caption{Screenshot of shinyshval. On right parameters can be changed. In the middle default parameters be selected. The right side shows the computed shval.}\label{fig:screenshot}
+\includegraphics[width=1\linewidth]{shinyshval} \caption{Screenshot of shinyshval. On the left parameters can be changed. In the middle default parameters be selected. The right side shows the computed shval.}\label{fig:screenshot}
 \end{figure}
 
 Of course the back-end functionality to compute SHVAL values in R without app is also possible and described in the README.
