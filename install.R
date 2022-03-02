@@ -1,0 +1,5 @@
+install.packages("remotes")
+install.packages("shiny")
+install.packages("rmarkdown")
+install.packages("shinydashboard")
+remotes::install_github("basf/shinyshval",  dependencies = TRUE)
