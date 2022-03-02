@@ -1,0 +1,1 @@
+shiny::shinyApp(ui = shinyshval::app_ui, server = shinyshval::app_server)

@@ -1,0 +1,18 @@
+The shinyshval package as a whole is distributed under EUPL-1.2 license.
+
+The shinyshval package dynamically links other open source software components.
+The following is a list of these directly linked components,
+as stated in the DESCRIPTION file:
+
+==================  =========================  ==========================================================
+Package             License                    CRAN
+==================  =========================  ==========================================================
+data.table          MPL-2.0 | file LICENSE     https://cran.r-project.org/web/packages/data.table
+fitdistrplus        GPL (>= 2)                 https://cran.r-project.org/web/packages/fitdistrplus
+htmlwidgets         MIT + file LICENSE         https://cran.r-project.org/web/packages/htmlwidgets
+rhandsontable       MIT + file LICENSE         https://cran.r-project.org/web/packages/rhandsontable
+rriskDistributions  GPL (>= 3)                 https://cran.r-project.org/web/packages/rriskDistributions
+shiny               GPL-3 | file LICENSE       https://cran.r-project.org/web/packages/shiny
+shinydashboard      GPL (>= 2) | file LICENSE  https://cran.r-project.org/web/packages/shinydashboard
+shinyWidgets        GPL-3                      https://cran.r-project.org/web/packages/shinyWidgets
+==================  =========================  ==========================================================

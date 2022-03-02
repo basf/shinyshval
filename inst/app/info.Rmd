@@ -1,0 +1,100 @@
+SHVAL: Estimation of the residue intake rate for certain bee species under given conditions
+====================
+
+## Introduction
+
+
+One aim of the exposure assessment is to provide input into the assessment of the daily residue intake rate of bees. This residue intake rate (*RI*) is calculated as
+
+$$RI =  \frac{PEC_{pollen} C_{pollen} + PEC_{nectar} C_{nectar}}{1000}$$
+
+where PEC are the *predicted environmental concentrations* (mg/kg) in pollen and nectar and 
+$C$ are the *consumption rates* (mg/day) of a bee species for pollen and nectar.
+
+The consumption rate of nectar (*$C_{nectar}$*) is assessed as the quotient of the intake rate of sugar
+(*$d_{sugar}$* (mg/day)) and the sugar content of nectar (*$m_{sugar}$* (kg/kg)).
+
+$$RI =  \frac{PEC_{pollen} C_{pollen} + PEC_{nectar} \frac{d_{sugar}}{m_{sugar}}}{1000}$$
+
+PECs can be also derived from actual measurements. 
+Concentrations in nectar and pollen are based on the residue unit dose (*RUD*),
+which is defined as the residue in mg/kg at a dose of 1 kg/ha.
+
+Shortcut Values (SV) are used in lower tier risk assessment and combine these:
+
+$$SV =  \frac{RUD_{pollen} C_{pollen} + RUD_{nectar} \frac{d_{sugar}}{m_{sugar}}}{1000}$$
+
+So $SV$ estimates the daily residue intake rate of a bee (μg/day) for a deposition of 1 kg/ha.
+Different bee species have different values of *$C_{pollen}$*, *$d_{sugar}$* and *$m_{sugar}$*.
+
+If there is information for decline of $RUDs$ available, simulations can be carried out to assess a 
+time-weighted average (TWA) SV:
+
+$$ SV_{TWA} = \frac{1}{1000} \left( \frac{RUD_{pollen} C_{pollen}}{k_{pollen} t} (1-exp(-k_{pollen} t)) 
++ \frac{RUD_{nectar} \frac{d_{sugar}}{m_{sugar}}}{k_{nectar} t}(1-exp(-k_{nectar} t)\right)$$
+
+where *$k$* is the decay rate of pollen and nectar and *$t$* is the time-window to considered.
+
+## Computations
+
+SV are calculated using Monte-Carlo simulations taking uncertainty into account.
+Distributions are fitted for each input parameter: normal for *$RUD_{pollen}$*, *$RUD_{pollen}$*, *$C_{pollen}$*, *$d_{sugar}$* and beta for *$m_{sugar}$*) which are used in simulations.
+
+One simulation-run consists of 1000 simulated hives, from which the $90^{th}$ percentile of SV is determined.
+
+The median of 1000 simulated  $90^{th}$ percentile SV is used for exposure assessment.
+
+
+## Usage
+
+The tool needs inputs for *$RUD_{pollen}$*, *$RUD_{pollen}$*, *$C_{pollen}$*, *$d_{sugar}$* and *$m_{sugar}$*.
+
+* *$RUD_{pollen}$* and *$RUD_{pollen}$* should be **natural-log transformed** values
+* *$C_{pollen}$*, *$d_{sugar}$* and *$m_{sugar}$* should **untransformed** values
+
+### Inputs
+
+There are two possibilities to enter parameters:
+
+1. You can copy & paste *measurements* of each parameter (*Measurements* tab), from which the distribution will fitted.
+2. You can specify estimates (*Estimates* tab). You can specify the mean + sd, or a range or a best-guess for parameters.
+
+The bar on the left *Needed inputs* shows you if there something missing for computation.
+
+### Default parameters.
+
+Default parameters for *$C_{pollen}$*, *$d_{sugar}$* and *$m_{sugar}$* for different bee species and types have been defined (according to EFSA Guideline).
+
+You can select these by clicking on the buttons. These will change the values in the *Estimates* tab,
+you can also change these afterwards (changes will be gone after selecting a different species.)
+
+### Outputs
+
+Simulation results of the $90^{th}$ percentile SV including 95% Confidence Intervals are shown on the left.
+
+
+## Quality Assurance
+
+Code-base is under version control and a extensive set of tests have been implemented in order to assure that this tool gives the same results as the official EFSA tool.
+
+
+In short, a total number of 192 continuously integrated tests are run on each code change.
+These tests that cover 100% of back-end functionality. 
+
+* 156 for the internal functioning of function for the app
+* 36 tests of 9 scenarios specifically aimed at comparison of results with the official EFSA script
+  
+Comparisons are made with a precision of 1x10^-1 to 1x10^-2.
+
+## Disclaimer
+
+`shinyshval` is released with agreement of EFSA under [EUPL-1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12) open source license.
+According to articles 7 and 8 of the [EUPL-1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12) license EFSA is not responsible for errors, omissions or deficiencies regarding `shinyshval`;
+`shinyshval` is being made available as such without any warranty either expressed or implied, including, but not limited to, warranties of performance, merchantability, and fitness for a particular purpose; 
+In no event shall EFSA be liable for direct, indirect, special, incidental, or consequential damages resulting from the use, misuse, or inability to use `shinyshval`.
+
+## References
+
+* [EFSA Guidance Document on the risk assessment of plant protection products on bees (Apis mellifera, Bombus spp. and solitary bees)](https://www.efsa.europa.eu/de/efsajournal/pub/3295)
+
+* [A small application developed in R for the estimation of the residue intake rate for certain bee species under given conditions: the SHVAL tool](https://efsa.onlinelibrary.wiley.com/doi/pdf/10.2903/sp.efsa.2014.EN-623)

@@ -1,0 +1,33 @@
+Package: shinyshval
+Title: Calculation of Shval as Shiny Application
+Version: 0.1.0
+Authors@R: 
+    c(person(given = "Eduard", family = "Szöcs", 
+        role = c("aut", "cre"), email = "eduard.szoecs@basf.com"),
+      person(given = "Tobias", family = "Pamminger",
+        role = "ctb", email = "tobias.pamminger@bayer.com"),
+      person("BASF SE", role = "cph"),
+      person("EFSA", role = "cph", comment = "Original SHVAL-Tool code")
+      )
+Description: Shiny Application for Calculation of shortcut values (SHVAL) for risk assessment.
+  This package wraps original scripts `SHVAL_NoT_v1.1.R` and `SHVAL_TWA_v1.1.R` into functions,
+  adds unit tests and provides a user-friendly shiny application as interface.
+License: EUPL
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Depends: R (>= 3.4.0)
+BugReports: https://github.com/basf/shinyshval/issues
+URL: https://github.com/basf/shinyshval
+Imports: 
+    fitdistrplus,
+    data.table,
+    rriskDistributions,
+    shiny,
+    shinydashboard,
+    rhandsontable,
+    shinyWidgets,
+    htmlwidgets
+Suggests: testthat,
+  covr

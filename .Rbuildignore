@@ -1,0 +1,10 @@
+^shinyshval\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$
+^install.R           # only to binder branch
+^runtime.txt       # only to binder branch
+^app.R               # only to binder branch
+codecov.yml
+.github
+.devcontainer
+LICENSE
