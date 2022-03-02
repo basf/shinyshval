@@ -66,7 +66,7 @@ It can be also easily be deployed using docker [@rocker:2017].
 A demo app using docker can be spin up on binder: https://mybinder.org/v2/gh/basf/shinyshval/binder?urlpath=shiny
 
 
-```{r screenshot, echo = FALSE, out.width="100%", fig.cap="Screenshot of shinyshval. On right parameters can be changed. In the middle default parameters be selected. The right side shows the computed shval."}
+```{r screenshot, echo = FALSE, out.width="100%", fig.cap="Screenshot of shinyshval. On the left parameters can be changed. In the middle default parameters be selected. The right side shows the computed shval."}
 knitr::include_graphics("shinyshval.png")
 ```
 
