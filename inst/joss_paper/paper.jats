@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.2 20190208//EN"
+                  "JATS-publishing1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+<front>
+<journal-meta>
+<journal-id></journal-id>
+<journal-title-group>
+<journal-title>Journal of Open Source Software</journal-title>
+<abbrev-journal-title>JOSS</abbrev-journal-title>
+</journal-title-group>
+<issn publication-format="electronic">2475-9066</issn>
+<publisher>
+<publisher-name>Open Journals</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="publisher-id">0</article-id>
+<article-id pub-id-type="doi">N/A</article-id>
+<title-group>
+<article-title>shinyshval: A User-Friendly Shiny implementation of the
+EFSA SHVAL tool for the use in Bee risk assessment</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author">
+<contrib-id contrib-id-type="orcid">0000-0001-5376-1194</contrib-id>
+<name>
+<surname>Szöcs</surname>
+<given-names>Eduard</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+<xref ref-type="corresp" rid="cor-1"><sup>*</sup></xref>
+</contrib>
+<contrib contrib-type="author">
+<contrib-id contrib-id-type="orcid">0000-0003-1257-3829</contrib-id>
+<name>
+<surname>Pamminger</surname>
+<given-names>Tobias</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+<xref ref-type="aff" rid="aff-2"/>
+</contrib>
+<aff id="aff-1">
+<institution-wrap>
+<institution>BASF SE, Digitalization of R&amp;D, Carl-Bosch-Straße 38,
+67063 Ludwigshafen am Rhein, Germany</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-2">
+<institution-wrap>
+<institution>Current address: Bayer AG, Division CropScience,
+Alfred-Nobel-Straße 50, 40789 Monheim am Rhein, Germany</institution>
+</institution-wrap>
+</aff>
+</contrib-group>
+<author-notes>
+<corresp id="cor-1">* E-mail: <email></email></corresp>
+</author-notes>
+<pub-date date-type="pub" publication-format="electronic" iso-8601-date="2022-02-10">
+<day>10</day>
+<month>2</month>
+<year>2022</year>
+</pub-date>
+<volume>¿VOL?</volume>
+<issue>¿ISSUE?</issue>
+<fpage>¿PAGE?</fpage>
+<permissions>
+<copyright-statement>Authors of papers retain copyright and release the
+work under a Creative Commons Attribution 4.0 International License (CC
+BY 4.0)</copyright-statement>
+<copyright-year>2022</copyright-year>
+<copyright-holder>The article authors</copyright-holder>
+<license license-type="open-access" xlink:href="https://creativecommons.org/licenses/by/4.0/">
+<license-p>Authors of papers retain copyright and release the work under
+a Creative Commons Attribution 4.0 International License (CC BY
+4.0)</license-p>
+</license>
+</permissions>
+<kwd-group kwd-group-type="author">
+<kwd>R</kwd>
+<kwd>ecotoxicological risk assessment</kwd>
+<kwd>shiny app</kwd>
+<kwd>environmental management</kwd>
+<kwd>toxicology</kwd>
+</kwd-group>
+</article-meta>
+</front>
+<body>
+<sec id="summary">
+  <title>Summary</title>
+  <p>In 2013 the European Food Safety Authority (EFSA) published a
+  guidance document for the proposed revision of the bee risk assessment
+  of plant protection products in the European Union
+  (<xref alt="EFSA, 2013" rid="ref-efsaU003A2013" ref-type="bibr">EFSA,
+  2013</xref>). This revision includes the introduction of the shortcut
+  values (SV) as an estimate for the expected oral uptake of plant
+  protection products residues by bees. To enable the users to modify
+  the provided default input parameters and the re-calculation of the
+  relevant SV, EFSA has published R-scripts for the calculations: the
+  SHVAL tool
+  (<xref alt="Zancanaro, Cortiñas Abrahantes, Boesten, &amp; Szentes, 2014" rid="ref-shvalU003A2014" ref-type="bibr">Zancanaro,
+  Cortiñas Abrahantes, Boesten, &amp; Szentes, 2014</xref>).</p>
+  <p><monospace>shinyshval</monospace> wraps these R-scripts in an R
+  package and provides an easy to use graphical user interface to
+  calculate SV values, using the Shiny web framework
+  (<xref alt="Chang et al., 2021" rid="ref-shinyU003A2021" ref-type="bibr">Chang
+  et al., 2021</xref>). <monospace>shinyshval</monospace> provides
+  simple and convenient access to core functionalities provided by the
+  original SHVAL tool, without the need of the users to be familiar with
+  the R programming language.</p>
+  <p>The aim of <monospace>shinyshval</monospace> is to facilitate
+  accessibility of the SHVAL tool to all relevant users and provide a
+  packaged, documented, tested and open-source set of functions.</p>
+</sec>
+<sec id="statement-of-need">
+  <title>Statement of need</title>
+  <p>The calculation of SV values and modification of its input
+  parameters, depending on the expected exposure scenario, is a core
+  component of the envisioned future bee Risk Assessment in the European
+  Union. However, the EFSA provided SHVAL tool required familiarity with
+  the R programming language and specific formatting of input data
+  files. By providing a web based graphical user interface, the
+  <monospace>shinyshval</monospace> will facilitate the accessibility of
+  the SHVAL tool to the wider community, enable future users without
+  prior R knowledge to access this risk assessment calculation tool and
+  could serve as inspiration for the development of the next generation
+  of R based regulatory tools.</p>
+</sec>
+<sec id="use">
+  <title>Use</title>
+  <p>The <monospace>shinyshval</monospace> app closely follows the SHVAL
+  tool implementation outlined in the associated technical report which
+  provides a detailed explanation of the performed calculations and
+  required input variables
+  (<xref alt="Zancanaro et al., 2014" rid="ref-shvalU003A2014" ref-type="bibr">Zancanaro
+  et al., 2014</xref>). Default parameters for different bee species and
+  types have been defined (according to EFSA Guideline) and can be
+  selected. Help and description is directly included in the
+  application.</p>
+  <p>The app can be started from R with the following code</p>
+  <code language="r script"># install shinyshval from github repository
+install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;basf/shinyshval&quot;)
+# start app
+shinyshval::run_app()</code>
+  <p>It can be also easily be deployed using docker
+  (<xref alt="Boettiger &amp; Eddelbuettel, 2017" rid="ref-rockerU003A2017" ref-type="bibr">Boettiger
+  &amp; Eddelbuettel, 2017</xref>). A demo app using docker can be spin
+  up on binder:
+  https://mybinder.org/v2/gh/basf/shinyshval/binder?urlpath=shiny</p>
+  <p>Of course the back-end functionality to compute SHVAL values in R
+  without app is also possible and described in the README.</p>
+</sec>
+<sec id="quality-assurance">
+  <title>Quality Assurance</title>
+  <p>The initial interactive R scripts have been split and wrapped into
+  functions and an R package. This provides basic infrastructure for
+  checking that the package is in full working order.</p>
+  <p>In order to ensure consistent results between the
+  <monospace>shinyshval</monospace> and original EFSA SHVAL tool, the
+  package is under version control and an extensive set of tests have
+  been implemented using <monospace>testthat</monospace>
+  (<xref alt="Wickham, 2011" rid="ref-testthatU003A2011" ref-type="bibr">Wickham,
+  2011</xref>).</p>
+  <p>In short, a total number of 192 continuously integrated tests are
+  run on each code change. These tests that cover 100% of back-end
+  functionality.</p>
+  <list list-type="bullet">
+    <list-item>
+      <p>156 for the internal functioning of function for the app</p>
+    </list-item>
+    <list-item>
+      <p>36 tests of 9 scenarios specifically aimed at comparison of
+      results with the official EFSA script</p>
+    </list-item>
+  </list>
+  <p>Because of the non-deterministic nature of the computations,
+  comparisons are made with a precision of
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[1x10^{-1}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>1</mml:mn><mml:mi>x</mml:mi><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>
+  to <inline-formula><alternatives>
+  <tex-math><![CDATA[1x10^{-2}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>1</mml:mn><mml:mi>x</mml:mi><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>.</p>
+</sec>
+<sec id="availability-and-community-guidelines">
+  <title>Availability and Community Guidelines</title>
+  <p>The software is available at the
+  <ext-link ext-link-type="uri" xlink:href="https://github.com/basf/shinyshval">GitHub
+  repository</ext-link>. The GitHub repository also contains the source
+  code for this paper and a contribution guide.</p>
+</sec>
+<sec id="acknowledgement">
+  <title>Acknowledgement</title>
+  <p>We thank EFSA for supporting the authors publishing
+  <monospace>shinyshval</monospace> under an open-source license.</p>
+</sec>
+<sec id="disclaimer">
+  <title>Disclaimer</title>
+  <p><monospace>shinyshval</monospace> is released with agreement of
+  EFSA under
+  <ext-link ext-link-type="uri" xlink:href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">EUPL-1.2</ext-link>
+  open source license. According to articles 7 and 8 of the
+  <ext-link ext-link-type="uri" xlink:href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12">EUPL-1.2</ext-link>
+  license EFSA is not responsible for errors, omissions or deficiencies
+  regarding <monospace>shinyshval</monospace>;
+  <monospace>shinyshval</monospace> is being made available as such
+  without any warranty either expressed or implied, including, but not
+  limited to, warranties of performance, merchantability, and fitness
+  for a particular purpose; In no event shall EFSA be liable for direct,
+  indirect, special, incidental, or consequential damages resulting from
+  the use, misuse, or inability to use
+  <monospace>shinyshval</monospace>.</p>
+</sec>
+</body>
+<back>
+<ref-list>
+  <ref-list>
+    <ref id="ref-efsaU003A2013">
+      <element-citation publication-type="article-journal">
+        <person-group person-group-type="author">
+          <name><surname>EFSA</surname></name>
+        </person-group>
+        <article-title>Guidance on the risk assessment of plant protection products on bees (apis mellifera, bombus spp. And solitary bees)</article-title>
+        <source>EFSA Journal</source>
+        <year iso-8601-date="2013">2013</year>
+        <volume>11</volume>
+        <issue>7</issue>
+        <pub-id pub-id-type="doi">10.2903/j.efsa.2013.3295</pub-id>
+      </element-citation>
+    </ref>
+    <ref id="ref-shvalU003A2014">
+      <element-citation publication-type="book">
+        <person-group person-group-type="author">
+          <name><surname>Zancanaro</surname><given-names>Gabriele</given-names></name>
+          <name><surname>Cortiñas Abrahantes</surname><given-names>José</given-names></name>
+          <name><surname>Boesten</surname><given-names>Jos</given-names></name>
+          <name><surname>Szentes</surname><given-names>Csaba</given-names></name>
+        </person-group>
+        <source>Application for the estimation of the residue intake rate for certain bee species under given conditions (SHVAL tool)</source>
+        <publisher-name>Zenodo</publisher-name>
+        <year iso-8601-date="2014-06">2014</year><month>06</month>
+        <uri>https://doi.org/10.5281/zenodo.252130</uri>
+        <pub-id pub-id-type="doi">10.5281/zenodo.252130</pub-id>
+      </element-citation>
+    </ref>
+    <ref id="ref-shinyU003A2021">
+      <element-citation publication-type="book">
+        <person-group person-group-type="author">
+          <name><surname>Chang</surname><given-names>Winston</given-names></name>
+          <name><surname>Cheng</surname><given-names>Joe</given-names></name>
+          <name><surname>Allaire</surname><given-names>JJ</given-names></name>
+          <name><surname>Sievert</surname><given-names>Carson</given-names></name>
+          <name><surname>Schloerke</surname><given-names>Barret</given-names></name>
+          <name><surname>Xie</surname><given-names>Yihui</given-names></name>
+          <name><surname>Allen</surname><given-names>Jeff</given-names></name>
+          <name><surname>McPherson</surname><given-names>Jonathan</given-names></name>
+          <name><surname>Dipert</surname><given-names>Alan</given-names></name>
+          <name><surname>Borges</surname><given-names>Barbara</given-names></name>
+        </person-group>
+        <source>shiny: Web Application Framework for R</source>
+        <year iso-8601-date="2021">2021</year>
+        <uri>https://CRAN.R-project.org/package=shiny</uri>
+      </element-citation>
+    </ref>
+    <ref id="ref-rockerU003A2017">
+      <element-citation publication-type="article-journal">
+        <person-group person-group-type="author">
+          <name><surname>Boettiger</surname><given-names>Carl</given-names></name>
+          <name><surname>Eddelbuettel</surname><given-names>Dirk</given-names></name>
+        </person-group>
+        <article-title>An Introduction to Rocker: Docker Containers for R</article-title>
+        <source>The R Journal</source>
+        <year iso-8601-date="2017">2017</year>
+        <volume>9</volume>
+        <issue>2</issue>
+        <uri>https://doi.org/10.32614/RJ-2017-065</uri>
+        <pub-id pub-id-type="doi">10.32614/RJ-2017-065</pub-id>
+      </element-citation>
+    </ref>
+    <ref id="ref-testthatU003A2011">
+      <element-citation publication-type="article-journal">
+        <person-group person-group-type="author">
+          <name><surname>Wickham</surname><given-names>Hadley</given-names></name>
+        </person-group>
+        <article-title>testthat: Get Started with Testing</article-title>
+        <source>The R Journal</source>
+        <year iso-8601-date="2011">2011</year>
+        <volume>3</volume>
+        <issue>1</issue>
+        <uri>https://doi.org/10.32614/RJ-2011-002</uri>
+        <pub-id pub-id-type="doi">10.32614/RJ-2011-002</pub-id>
+      </element-citation>
+    </ref>
+  </ref-list>
+</ref-list>
+</back>
+</article>
