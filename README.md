@@ -22,7 +22,7 @@ oral uptake of plant protection products residues by bees.
 ## Demo
 
 You can fire-up a demo application on binder:
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/basf/shinyshval/binder?urlpath=shiny)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/basf/shinyshval/binder?urlpath=shiny/inst/app/)
 
 ## Installation
 
