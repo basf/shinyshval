@@ -33,7 +33,7 @@ In 2013 the European Food Safety Authority (EFSA) published a guidance document 
 This revision includes the introduction of the shortcut values (SV) as an estimate for the expected oral uptake of plant protection products residues by bees. 
 To enable the users to modify the provided default input parameters and the re-calculation of the relevant SV, EFSA has published R-scripts for the calculations: the SHVAL tool [@shval:2014].
 
-`shinyshval` refactors these R-scripts into an R package and adds quality measures like documentation & unit tests.
+`shinyshval` refactors these R-scripts into an R package, adds quality measures like documentation & unit tests and make the computations available under a open-source license.
 Additionally, it provides an easy to use graphical user interface to calculate SV values, using the Shiny web framework [@shiny:2021].
 `shinyshval` provides simple and convenient access to core functionalities provided by the original SHVAL tool, without the need of the users to be familiar with the R programming language.
 
@@ -44,6 +44,7 @@ The aim of `shinyshval` is to facilitate accessibility of the SHVAL tool to all 
 
 The calculation of SV values and modification of its input parameters, depending on the expected exposure scenario, is a core component of the envisioned future bee Risk Assessment in the European Union. 
 However, the EFSA provided SHVAL tool required familiarity with the R programming language and specific formatting of input data files.
+Additionally, the initial R-scripts were under a proprietary license model and we aligned with EFSA to publish `shinyshval` now under a open-source license.
 By providing a web based graphical user interface, the `shinyshval` will facilitate the accessibility of the SHVAL tool to the wider community, enable future users without prior R knowledge to access this risk assessment calculation tool and could serve as inspiration for the development of the next generation of R based regulatory tools.
 
 
