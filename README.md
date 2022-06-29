@@ -11,7 +11,6 @@ status](https://www.r-pkg.org/badges/version/shinyshval)](https://CRAN.R-project
 status](https://github.com/basf/shinyshval/workflows/R-CMD-check/badge.svg)](https://github.com/basf/shinyshval/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/basf/shinyshval/branch/master/graph/badge.svg)](https://codecov.io/gh/basf/shinyshval?branch=master)
-[![status](https://joss.theoj.org/papers/96403317a80cf275bba3413b5bb19775/status.svg)](https://joss.theoj.org/papers/96403317a80cf275bba3413b5bb19775)
 <!-- badges: end -->
 
 The goal of `shinyshval` is to provide a user-friendly shiny-application
