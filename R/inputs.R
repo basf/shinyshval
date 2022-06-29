@@ -30,6 +30,111 @@ raw_to_momnts <- function(x,
     stringsAsFactors = FALSE)
 }
 
+# static imports from https://github.com/cran/rriskDistributions
+# in order to be able to run on mybinder (tcl/tk dependencies)
+# These are GPL-3 and not used in the main application / master branch.
+is.error <- function(x) inherits(x, "try-error")
+get.beta.par <- function (p = c(0.025, 0.5, 0.975), q, show.output = TRUE, plot = TRUE, 
+    tol = 0.001, fit.weights = rep(1, length(p)), scaleX = c(0.1, 
+        0.9), ...) 
+{
+    if (!is.numeric(p) | !is.numeric(q) | !is.numeric(fit.weights)) {
+        stop("INVALID INPUT, not numerical items in the input vectors 'p', 'q' and/or 'fit.weights'!", 
+            call. = FALSE)
+    }
+    if (prod(order(p) == seq(1:length(p))) == 0 | prod(order(q) == 
+        seq(1:length(q))) == 0) {
+        stop("INVALID INPUT, the vector of probabilities/percentiles is not ordered!", 
+            call. = FALSE)
+    }
+    if (min(p) < 0 | max(p) > 1) {
+        stop("INVALID INPUT, items of the probability vector should lie between 0 and 1!", 
+            call. = FALSE)
+    }
+    if (min(q) < 0 | max(q) > 1) {
+        stop("INVALID INPUT, percentiles are out of the domain (0, 1) => beta distribution couldn't be fitted!", 
+            call. = FALSE)
+    }
+    if (length(p) != length(q) | length(p) != length(fit.weights) | 
+        length(q) != length(fit.weights)) {
+        stop("INVALID INPUT, 'p', 'q' and 'fit.weights' are not of the same length! The vectors of quantiles, probabilities and weightings should be of the same length.", 
+            call. = FALSE)
+    }
+    if (length(q) < 2) {
+        stop("INVALID INPUT, at least two quantiles must be known!", 
+            call. = FALSE)
+    }
+    if (!is.logical(show.output)) {
+        stop("INVALID INPUT, the argument 'show.output' should be logical!", 
+            call. = FALSE)
+    }
+    if (!is.logical(plot)) {
+        stop("INVALID INPUT, the argument 'plot' should be logical!", 
+            call. = FALSE)
+    }
+    if (!is.numeric(tol) | length(tol) != 1 | tol < 0) {
+        stop("INVALID INPUT, the argument 'tol' should be a single positive numerical value!", 
+            call. = FALSE)
+    }
+    fit.weights.original <- fit.weights
+    fit.weights <- fit.weights/sum(fit.weights)
+    minimize <- function(shape) {
+        summand <- suppressWarnings(stats::pbeta(q = q, shape1 = shape[1], 
+            shape2 = shape[2]) - p)
+        summand <- summand * fit.weights
+        sum(summand^2)
+    }
+    fit <- c()
+    fit$value <- tol + 1
+    try1 <- try(fit <- stats::optim(par = c(0.1, 0.1), minimize, 
+        method = "L-BFGS-B", lower = 0.001, upper = 10000), silent = TRUE)
+    if (is.error(try1) || fit$value >= tol) {
+        warning("The fitting procedure 'L-BFGS-B' has failed (convergence error occurred or specified tolerance not achieved)!", 
+            call. = FALSE)
+        fit <- c()
+        fit$value <- tol + 1
+        try2 <- try(fit <- stats::optim(minimize, method = "CG"), 
+            silent = TRUE)
+        if (is.error(try2) || fit$value >= tol) {
+            warning("The fitting procedure 'CG' has failed (convergence error occurred or specified tolerance not achieved)!", 
+                call. = FALSE)
+            Par <- NA
+        }
+        else if (fit$value < tol) {
+            message("The fitting procedure 'CG' was successful!\n(Used this fallback optimization method because 'L-BFGS-B' has failed...)")
+            Par <- fit$par
+            names(Par) <- c("shape1", "shape2")
+            if (show.output) 
+                print(fit)
+        }
+    }
+    else if (fit$value < tol) {
+        message("The fitting procedure 'L-BFGS-B' was successful!")
+        Par <- fit$par
+        names(Par) <- c("shape1", "shape2")
+        if (show.output) 
+            print(fit)
+    }
+    if (prod(!is.na(Par)) & plot) {
+        main1 <- paste("shape1 = ", round(Par["shape1"], digits = 2))
+        main2 <- paste("shape2 = ", round(Par["shape2"], digits = 2))
+        main <- paste("Beta (", main1, ", ", main2, ")", sep = "")
+        sub = paste("fit.weights = c(", paste(fit.weights.original, 
+            collapse = ", "), ")", sep = "")
+        Support.lim <- c(stats::qbeta(p = min(p) * scaleX[1], 
+            shape1 = Par["shape1"], shape2 = Par["shape2"]), 
+            stats::qbeta(p = (max(p) + (1 - max(p)) * scaleX[2]), 
+                shape1 = Par["shape1"], shape2 = Par["shape2"]))
+        Support <- seq(min(min(q), Support.lim[1]), max(max(q), 
+            Support.lim[2]), length = 200)
+        Probability <- stats::pbeta(Support, Par["shape1"], Par["shape2"])
+        graphics::plot(Support, Probability, type = "l", xlim = range(Support.lim, 
+            q), main = main, xlab = "Quantiles", sub = sub, ...)
+        graphics::points(x = q, y = p, pch = 19, ...)
+    }
+    return(Par)
+}
+
 
 #' Convert estimates (mean + sd, min+max or best guess) to moments
 #' @description The function converts various estimates to moments (
@@ -44,7 +149,6 @@ raw_to_momnts <- function(x,
 #' @param alpha numeric; alpha parameter for estimation from range
 #' @return a data.frame with four columns:
 #'   a (=mean), b (=sd), dist (=ditribution name), and source (='raw')
-#' @importFrom rriskDistributions get.beta.par
 #' @export
 est_to_momnts <- function(x,
     param = c("RUD_p", "RUD_n", "CONS_p", "CONS_s", "CNT_s"),
