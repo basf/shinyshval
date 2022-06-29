@@ -26,7 +26,7 @@ t1 <- est_to_momnts(data.frame(param = "RUD_p",
                                bg = NA),
                     param = "RUD_p")
 
-test_that("works with range for normal", {
+test_that("works with range for normal & returns same value as shvalv1.1.R", {
   expect_is(t1, "data.frame")
   expect_equal(names(t1), c("a", "b", "dist", "source"))
   expect_equal(nrow(t1), 1)
@@ -87,7 +87,7 @@ t1 <- est_to_momnts(data.frame(param = "CNT_s",
                                bg = 0.4),
                     param = "CNT_s")
 
-test_that("works with range + bg for beta", {
+test_that("works with range + bg for beta & returns same as shvalv1.1.R", {
   expect_is(t1, "data.frame")
   expect_equal(names(t1), c("a", "b", "dist", "source"))
   expect_equal(nrow(t1), 1)
@@ -105,7 +105,7 @@ t1 <- est_to_momnts(data.frame(param = "CNT_s",
                                bg = NA),
                     param = "CNT_s")
 
-test_that("works with range for beta", {
+test_that("works with range for beta & returns same value as shvalv1.1.R", {
   expect_is(t1, "data.frame")
   expect_equal(names(t1), c("a", "b", "dist", "source"))
   expect_equal(nrow(t1), 1)

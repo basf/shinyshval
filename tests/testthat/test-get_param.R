@@ -27,7 +27,7 @@ test_that("returns correct object", {
                     c("RUD_p", "RUD_n", "CONS_p", "CONS_s", "CNT_s")))
 })
 
-test_that("gives correct values", {
+test_that("returns same results as shvalv1.1.R", {
   expect_equal(p$a[p$param == "RUD_p"], 0.04, tolerance = 1e-2)
   expect_equal(p$b[p$param == "RUD_p"], 1.02, tolerance = 1e-2)
   expect_equal(p$dist[p$param == "RUD_p"], "norm")
@@ -99,7 +99,7 @@ est <- structure(list(param = c("RUD_p", "RUD_n", "CONS_p", "CONS_s", "CNT_s"),
   class = "data.frame")
 p <- get_param(raw, est)
 
-test_that("works with bg", {
+test_that("works with bg & returns same as shvalv1.1.R", {
   expect_equal(p$a[p$param == "CONS_s"], 5, tolerance = 1e-2)
   expect_equal(p$b[p$param == "CONS_s"], 0, tolerance = 1e-2)
   expect_equal(p$dist[p$param == "CONS_s"], "norm")
@@ -110,13 +110,6 @@ test_that("works with bg", {
   expect_equal(p$dist[p$param == "CNT_s"], "beta")
   expect_equal(p$source[p$param == "CNT_s"], "est_bg")
 })
-
-test_that("Works with only est", {
-  p <- get_param(raw = NULL, est)
-  expect_equal(p$a[p$param == "CONS_s"], 5, tolerance = 1e-2)
-})
-
-
 
 raw <- structure(list(RUD_p = c(-0.87, -0.43, NA, NA, NA),
       RUD_n = c(1, 2, NA, NA, NA),

@@ -20,6 +20,14 @@ tool](https://www.efsa.europa.eu/en/supporting/pub/en-623) developed by
 EFSA. It computes shortcut values (SV) as an estimate for the expected
 oral uptake of plant protection products residues by bees.
 
+`shinyshval`
+
+-   wraps original scripts `SHVAL_NoT_v1.1.R` and `SHVAL_TWA_v1.1.R`
+    into functions & a package
+-   provides sensible default parameters
+-   adds a significant amount of tests to check for valid results
+-   provides a user-friendly shiny application as interface.
+
 ## Demo
 
 You can fire-up a demo application on binder:
@@ -43,6 +51,11 @@ shinyshval::run_app()
 ```
 
 ## Using the backend
+
+`shinyshval` tries to provide sensible default parameters for the
+different scenarious. These have been extracted from the guideline as
+good as possible (see `?default_estimates`). Especially for `RUD` values
+users are welcome to adapt their needs.
 
 We can compute shval values for default parameters of Honey Bee
 foragers.
@@ -78,11 +91,11 @@ hist(shvals)
 ``` r
 # Mean
 mean(shvals)
-#> [1] 4.376845
+#> [1] 4.259501
 # 95% CI
 quantile(shvals, c(0.025, 0.975))
 #>     2.5%    97.5% 
-#> 3.882872 4.930923
+#> 3.786495 4.790376
 ```
 
 ## Quality assurance
@@ -91,15 +104,19 @@ In order to ensure consistent results between the `shinyshval` and
 original EFSA SHVAL tool, the package is under version control and an
 extensive set of tests have been implemented using `testthat`.
 
-In short, a total number of 192 continuously integrated tests are run on
+In short, a total number of 234 continuously integrated tests are run on
 each code change. These tests that cover 100% of back-end functionality.
 
 -   156 for the internal functioning of function for the app
--   36 tests of 9 scenarios specifically aimed at comparison of results
-    with the official EFSA script.
+-   42 tests comprise of 7 scenarios (6 each) specifically aimed at
+    comparison of results with the original EFSA script
+-   45 tests reproducing tables J4-J8 of the guideline
 
 Because of the non-deterministic nature of the computations, comparisons
-are made with a precision of 1*x*10<sup>−1</sup> to 1*x*10<sup>−2</sup>.
+are made with a precision of
+![1x10^{-1}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;1x10%5E%7B-1%7D "1x10^{-1}")
+to
+![1x10^{-2}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;1x10%5E%7B-2%7D "1x10^{-2}").
 Reference results form the original script can be found in the
 `inst/test_reference`for each scenario.
 

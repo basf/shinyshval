@@ -21,7 +21,7 @@ p <- get_param(raw, est)
 s <- sim(p)
 
 
-test_that("simulation works", {
+test_that("simulation works and gives same results a shval-tool", {
   expect_is(s, "numeric")
   expect_equal(length(s), 1000)
   expect_equal(mean(s), 1.6, tolerance = 1e-1)
@@ -30,7 +30,7 @@ test_that("simulation works", {
 })
 
 s <- sim(p, twa = TRUE)
-test_that("simulation with twa works", {
+test_that("simulation with twa works and gives same results a shval-tool", {
   expect_is(s, "numeric")
   expect_equal(length(s), 1000)
   expect_equal(mean(s), 0.4, tolerance = 1e-1)

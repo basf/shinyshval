@@ -13,6 +13,14 @@ if (getRversion() >= "2.15.1")
 #' Default values for shinyshval
 #'
 #' A dataset containing default values for consumptions & contents.
+#' 
+#' Values where extracted from tables J4-J8 of the guideline, as good as possible (see note).
+#'
+#' @note RUD values are given as mean +- sd on raw scale. However, for shval these numbers on
+#'   log-scale are needed. For the upwards scenarious we used the mean and sd from the original data provided, 
+#'   which fits to the guideline.
+#'   For the sidewards scenarious the sd was not possible to exract and the sd from the raw-scale was used!
+#'   This gives a slighly higher sd.
 #'
 #' @format A data frame with 24 rows and 10 variables:
 #' \describe{

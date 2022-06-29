@@ -19,7 +19,7 @@ library(MASS)
 ################### WARNING ###############################################################################
 ## PATH VARIABLE. To be adapted according to the local situation
 
-# adapt <- system.file("testdata/original/notwa", package = "shinyshval") 
+# adapt <- system.file("test_reference/original/notwa", package = "shinyshval") 
 
 ################################################################
 # The root as indicated between quotes ("H:/") must be changed according to the local situation
@@ -34,7 +34,7 @@ library(MASS)
 
 
 # DATA UPLOAD #
-rawSVdata <- read.csv(  system.file("testdata/EFSA_j4_forager_chronic/EFSA_j4_forager_chronic.csv",package = "shinyshval"), header=T)
+rawSVdata <- read.csv(system.file("test_reference/j7_sb_larva/j7_sb_larva.csv", package = "shinyshval") , header=T)
 
 
 # SETTING THE PARAMETERS
@@ -114,103 +114,103 @@ varnms <- c("RUD pollen", "RUD nectar", "Pollen consumption", "Sugar consumption
 
 # RUD's and CONSUMPTION
 # 3) start
-for (i in 1:4) {
-if ( (sum(is.na(rawSVdata[,i])) != length(rawSVdata[,i])) & sum(!is.na(rawSVdata[,i]))>2 ) {
-	pdf(file=paste(varnms[i],".pdf"))
-	hst <- hist(rawSVdata[,i], plot=FALSE)
-	hist(rawSVdata[,i], ylim=c(0,max(hst$density)), 
-		freq=FALSE, 
-		xlab=paste(varnms[i],"value"),main=paste(varnms[i],"\n fitted distribution"))
-	x <- (min(na.omit(rawSVdata[,i]))+0.5*min(na.omit(rawSVdata[,i]))):(max(na.omit(rawSVdata[,i]))+0.5*max(na.omit(rawSVdata[,i])))
-	curve(dnorm(x, mean=momnts[i,1],sd=momnts[i,2]),
-		from=(min(na.omit(rawSVdata[,i]))), #+0.5*min(na.omit(rawSVdata[,i]))),
-		to=(max(na.omit(rawSVdata[,i]))), #+0.5*max(na.omit(rawSVdata[,i]))),
-		add=TRUE, lwd=2, col="blue")
-	leg.txt <- c("Distribution: Normal",
-			paste("Mean =",round(momnts[i,1],2)),
-			paste("St Dev =", round(momnts[i,2],2)))
-	legend("topright", legend=leg.txt, bty="n", cex=.8)
-	dev.off()
-} 
-else {
-	if (!is.na(rawSVdata[1,i+6])&!is.na(rawSVdata[2,i+6])) {
-	x <- (momnts[i,1]-qnorm(0.99)*momnts[i,2]):(momnts[i,1]+qnorm(0.99)*momnts[i,2])
-	pdf(file=paste(varnms[i],".pdf"))
-	crv <- dnorm(x, mean=momnts[i,1],sd=momnts[i,2])
-	curve(dnorm(x, mean=momnts[i,1],sd=momnts[i,2]),
-			from=(momnts[i,1]-qnorm(0.99)*momnts[i,2]),
-			to=(momnts[i,1]+qnorm(0.99)*momnts[i,2]),
-			ylim=c(0,max(crv)), lwd=2, col="blue",
-			ylab="Density", xlab=paste(varnms[i],"value"),main=paste(varnms[i],"\n fitted distribution"))
-	leg.txt <- c("Distribution: Normal",paste("Mean =",round(momnts[i,1],2)),paste("St Dev =", round(momnts[i,2],2)))
-	legend("topleft",
-			legend=leg.txt, bty="n", cex=.8)
-	dev.off()
-} else {
-	x <- seq(0,1,0.01)
-	y <- seq(0,1,0.01)
-	pdf(file=paste(varnms[i],".pdf"))
-	plot(x,y, xaxt="n", yaxt="n", ylab="", xlab="", type="n")
-	leg.txt <- c("Input is a single point estimate \n No distribution fitted")
-	legend("center", legend=leg.txt, bty="n", cex=.8)
-	title(main=paste(varnms[i]))
-	title(xlab=paste(varnms[i],"value"))
-	dev.off()
-}}
-} 
+# for (i in 1:4) {
+# if ( (sum(is.na(rawSVdata[,i])) != length(rawSVdata[,i])) & sum(!is.na(rawSVdata[,i]))>2 ) {
+# 	pdf(file=paste(varnms[i],".pdf"))
+# 	hst <- hist(rawSVdata[,i], plot=FALSE)
+# 	hist(rawSVdata[,i], ylim=c(0,max(hst$density)), 
+# 		freq=FALSE, 
+# 		xlab=paste(varnms[i],"value"),main=paste(varnms[i],"\n fitted distribution"))
+# 	x <- (min(na.omit(rawSVdata[,i]))+0.5*min(na.omit(rawSVdata[,i]))):(max(na.omit(rawSVdata[,i]))+0.5*max(na.omit(rawSVdata[,i])))
+# 	curve(dnorm(x, mean=momnts[i,1],sd=momnts[i,2]),
+# 		from=(min(na.omit(rawSVdata[,i]))), #+0.5*min(na.omit(rawSVdata[,i]))),
+# 		to=(max(na.omit(rawSVdata[,i]))), #+0.5*max(na.omit(rawSVdata[,i]))),
+# 		add=TRUE, lwd=2, col="blue")
+# 	leg.txt <- c("Distribution: Normal",
+# 			paste("Mean =",round(momnts[i,1],2)),
+# 			paste("St Dev =", round(momnts[i,2],2)))
+# 	legend("topright", legend=leg.txt, bty="n", cex=.8)
+# 	dev.off()
+# } 
+# else {
+# 	if (!is.na(rawSVdata[1,i+6])&!is.na(rawSVdata[2,i+6])) {
+# 	x <- (momnts[i,1]-qnorm(0.99)*momnts[i,2]):(momnts[i,1]+qnorm(0.99)*momnts[i,2])
+# 	pdf(file=paste(varnms[i],".pdf"))
+# 	crv <- dnorm(x, mean=momnts[i,1],sd=momnts[i,2])
+# 	curve(dnorm(x, mean=momnts[i,1],sd=momnts[i,2]),
+# 			from=(momnts[i,1]-qnorm(0.99)*momnts[i,2]),
+# 			to=(momnts[i,1]+qnorm(0.99)*momnts[i,2]),
+# 			ylim=c(0,max(crv)), lwd=2, col="blue",
+# 			ylab="Density", xlab=paste(varnms[i],"value"),main=paste(varnms[i],"\n fitted distribution"))
+# 	leg.txt <- c("Distribution: Normal",paste("Mean =",round(momnts[i,1],2)),paste("St Dev =", round(momnts[i,2],2)))
+# 	legend("topleft",
+# 			legend=leg.txt, bty="n", cex=.8)
+# 	dev.off()
+# } else {
+# 	x <- seq(0,1,0.01)
+# 	y <- seq(0,1,0.01)
+# 	pdf(file=paste(varnms[i],".pdf"))
+# 	plot(x,y, xaxt="n", yaxt="n", ylab="", xlab="", type="n")
+# 	leg.txt <- c("Input is a single point estimate \n No distribution fitted")
+# 	legend("center", legend=leg.txt, bty="n", cex=.8)
+# 	title(main=paste(varnms[i]))
+# 	title(xlab=paste(varnms[i],"value"))
+# 	dev.off()
+# }}
+# } 
 # 3) end
 
 # SUGAR CONTENT
 # 4) start
-(	# IF raw data are available AND more than 2 records
-if ( sum(is.na(rawSVdata[,5]))!=length(rawSVdata[,5]) & sum(!is.na(rawSVdata[,5]))>2 ) {
-	pdf(file=paste(varnms[5],".pdf"))
-	hst <- hist(rawSVdata[,5], plot=FALSE)
-	hist(rawSVdata[,5], ylim=c(0,max(hst$density)), 
-			freq=FALSE, 
-			xlab=paste(varnms[5],"value"),main=paste(varnms[5],"\n fitted distribution"))
-	x <- (min(na.omit(rawSVdata[,5]))+0.5*min(na.omit(rawSVdata[,5]))):(max(na.omit(rawSVdata[,5]))+0.5*max(na.omit(rawSVdata[,5])))
-	curve(dbeta(x, shape1=momnts[5,1],shape2=momnts[5,2]),
-			from=(min(na.omit(rawSVdata[,5]))), #+0.5*min(na.omit(rawSVdata[,5]))),
-			to=(max(na.omit(rawSVdata[,5]))), #+0.5*max(na.omit(rawSVdata[,5]))),
-			add=TRUE, lwd=2, col="blue")
-	leg.txt <- c("Distribution: Beta",
-			paste("Shape1 =",round(momnts[5,1],2)),
-			paste("Shape2 =", round(momnts[5,2],2)))
-	legend("topright", legend=leg.txt, bty="n", cex=.8)
-	dev.off()
-} 
-else {
-	if ( momnts[5,1]!=0 & momnts[5,2]!=0 ) {
-	x <- seq(0,1,0.01)
-	pdf(file=paste(varnms[5],".pdf"))
-	crv <- dbeta(x, shape1=momnts[5,1], shape2=momnts[5,2])
-	curve(dbeta(x, shape1=momnts[5,1], shape2=momnts[5,2]),
-			from=0,	to=1,
-			ylim=c(0,max(crv)), lwd=2, col="blue",
-			ylab="", xlab="")
-	leg.txt <- c("Distribution: Beta",
-			paste("Shape1 =",  round(momnts[5,1],2)),
-			paste("Shape2 =", round(momnts[5,2],2))
-			)
-	legend("topright", legend=leg.txt, bty="n", cex=.8)
-	title(main=paste(varnms[5],"\n fitted distribution"))
-	title(xlab=paste(varnms[5],"value"))
-	title(ylab="Density")
-	dev.off()
-}
-else {
-	x <- seq(0,1,0.01)
-	y <- seq(0,1,0.01)
-	pdf(file=paste(varnms[5],".pdf"))
-	plot(x,y, ylab="", xlab="", type="n")
-	points(rawSVdata[3,11],1, pch=20)
-	leg.txt <- c("Input is a single point estimate \n No distribution fitted")
-	legend("center", legend=leg.txt, bty="n", cex=.8)
-	title(main=paste(varnms[5]))
-	dev.off()
-}}
-)
+# (	# IF raw data are available AND more than 2 records
+# if ( sum(is.na(rawSVdata[,5]))!=length(rawSVdata[,5]) & sum(!is.na(rawSVdata[,5]))>2 ) {
+# 	pdf(file=paste(varnms[5],".pdf"))
+# 	hst <- hist(rawSVdata[,5], plot=FALSE)
+# 	hist(rawSVdata[,5], ylim=c(0,max(hst$density)), 
+# 			freq=FALSE, 
+# 			xlab=paste(varnms[5],"value"),main=paste(varnms[5],"\n fitted distribution"))
+# 	x <- (min(na.omit(rawSVdata[,5]))+0.5*min(na.omit(rawSVdata[,5]))):(max(na.omit(rawSVdata[,5]))+0.5*max(na.omit(rawSVdata[,5])))
+# 	curve(dbeta(x, shape1=momnts[5,1],shape2=momnts[5,2]),
+# 			from=(min(na.omit(rawSVdata[,5]))), #+0.5*min(na.omit(rawSVdata[,5]))),
+# 			to=(max(na.omit(rawSVdata[,5]))), #+0.5*max(na.omit(rawSVdata[,5]))),
+# 			add=TRUE, lwd=2, col="blue")
+# 	leg.txt <- c("Distribution: Beta",
+# 			paste("Shape1 =",round(momnts[5,1],2)),
+# 			paste("Shape2 =", round(momnts[5,2],2)))
+# 	legend("topright", legend=leg.txt, bty="n", cex=.8)
+# 	dev.off()
+# } 
+# else {
+# 	if ( momnts[5,1]!=0 & momnts[5,2]!=0 ) {
+# 	x <- seq(0,1,0.01)
+# 	pdf(file=paste(varnms[5],".pdf"))
+# 	crv <- dbeta(x, shape1=momnts[5,1], shape2=momnts[5,2])
+# 	curve(dbeta(x, shape1=momnts[5,1], shape2=momnts[5,2]),
+# 			from=0,	to=1,
+# 			ylim=c(0,max(crv)), lwd=2, col="blue",
+# 			ylab="", xlab="")
+# 	leg.txt <- c("Distribution: Beta",
+# 			paste("Shape1 =",  round(momnts[5,1],2)),
+# 			paste("Shape2 =", round(momnts[5,2],2))
+# 			)
+# 	legend("topright", legend=leg.txt, bty="n", cex=.8)
+# 	title(main=paste(varnms[5],"\n fitted distribution"))
+# 	title(xlab=paste(varnms[5],"value"))
+# 	title(ylab="Density")
+# 	dev.off()
+# }
+# else {
+# 	x <- seq(0,1,0.01)
+# 	y <- seq(0,1,0.01)
+# 	pdf(file=paste(varnms[5],".pdf"))
+# 	plot(x,y, ylab="", xlab="", type="n")
+# 	points(rawSVdata[3,11],1, pch=20)
+# 	leg.txt <- c("Input is a single point estimate \n No distribution fitted")
+# 	legend("center", legend=leg.txt, bty="n", cex=.8)
+# 	title(main=paste(varnms[5]))
+# 	dev.off()
+# }}
+# )
 # 4) end
 
 
@@ -313,5 +313,6 @@ qls <- as.vector(quantile(SV, probs=c(0.025,0.5,0.975)))
 # # stop
 
 paste("The 90th percentile for this particular Shortcut Value is",round(qls[2], digits=3),"(CI=",round(qls[1],digits=1),"-",round(qls[3],digits=1),", CL=95%)")
+
 
 

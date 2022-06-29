@@ -21,10 +21,10 @@ d13 <- default_estimates("Bumble Bee", "adult", "nurse", "acute",
 
 test_that("gives correct values", {
   expect_equal(d$min[d$param == "CONS_s"], 80)
-  expect_equal(d$mean[d$param == "RUD_p"], 2.566487)
-  expect_equal(d$sd[d$param == "RUD_p"], 1.386)
-  expect_equal(d$mean[d$param == "RUD_n"], 0.9074518)
-  expect_equal(d$sd[d$param == "RUD_n"], 1.153)
+  expect_equal(d$mean[d$param == "RUD_p"], 2.56648)
+  expect_equal(d$sd[d$param == "RUD_p"], 1.361)
+  expect_equal(d$mean[d$param == "RUD_n"], 0.90752)
+  expect_equal(d$sd[d$param == "RUD_n"], 1.132)
   expect_equal(d1$min[d$param == "CONS_s"], 32)
   expect_equal(d2$bg[d2$param == "CONS_p"], 2)
   expect_equal(d2$bg[d2$param == "CONS_s"], 59.4)

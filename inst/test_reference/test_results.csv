@@ -1,0 +1,16 @@
+testdata,script,comment,shval,shval_lwr,shval_upr,rud_p_mean,rud_p_sd,rud_n_mean,rud_n_sd,cons_p_mean,cons_p_sd,cons_s_mean,cons_s_sd,cnt_s_a,cnt_s_b
+only_bg,notwa,,83.7,83.7,83.7,5,0,5,0,30.3,0,80,0,0.15,0
+only_meansd,notwa,Pdf-output (single point estimate) is wrong! Uses internally the correct (and here reported) estimates.,205.7,175.8,240.6,3,1,5,1.5,30,4,80,2,51.02,76.37
+only_range,notwa,,130,123,138,2,0.43,5,0.43,30,4.3,111,16.33,6.69,17.78
+only_raw,notwa,,2.7,2.4,3,2.58,1.3,1.36,1.39,18.69,22.57,9.77,10.84,0.15,0
+original_dtchanged_tchanged,notwa,,9.5,8.6,10.6,2.57,1.36,0.91,1.13,30.3,0,111,16.33,0.15,0
+original_dtchanged,notwa,,9.5,8.6,10.6,2.57,1.36,0.91,1.13,30.3,0,111,16.33,0.15,0
+original,notwa,,9.5,8.6,10.6,2.57,1.36,0.91,1.13,30.3,0,111,16.33,0.15,0
+only_bg,twa,,23.4,23.4,23.4,5,0,5,0,30.3,0,80,0,0.15,0
+only_meansd,twa,Pdf-output (single point estimate) is wrong! Uses internally the correct (and here reported) estimates.,57.5,49.1,67.2,3,1,5,1.5,30,4,80,2,51.02,76.37
+only_range,twa,,36.3,34.4,38.6,2,0.43,5,0.43,30,4.3,111,16.33,6.69,17.78
+only_raw,twa,,0.7,0.7,0.8,2.58,1.3,1.36,1.39,18.69,22.57,9.77,10.84,0.15,0
+original_dtchanged_tchanged,twa,,2.2,2,2.4,2.57,1.36,0.91,1.13,30.3,0,111,16.33,0.15,0
+original_dtchanged,twa,,3.9,3.5,4.3,2.57,1.36,0.91,1.13,30.3,0,111,16.33,0.15,0
+original,twa,,2.7,2.4,3,2.57,1.36,0.91,1.13,30.3,0,111,16.33,0.15,0
+original,notwa,,2.7,2.4,3,2.57,1.36,0.91,1.13,30.3,0,111,16.33,0.15,0

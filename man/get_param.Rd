@@ -21,6 +21,9 @@ and five rows (RUD_p, RUD_n, CONS_p, CONS_s, CNT_s)
 \description{
 Get and combine parameters from data.frames of raw data or estimates.
 }
+\note{
+data for RUD must be on log-scale
+}
 \examples{
 raw <- structure(list(RUD_p = c(-0.87, -0.43, -0.26, 2.02, -0.27),
      RUD_n = c(1, 2, 3, 4, 5),
