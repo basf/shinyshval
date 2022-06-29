@@ -19,7 +19,7 @@ library(MASS)
 ################### WARNING ###############################################################################
 ## PATH VARIABLE. To be adapted according to the local situation
 
-# adapt <- system.file("testdata/original/notwa", package = "shinyshval") 
+# adapt <- system.file("test_reference/original/notwa", package = "shinyshval") 
 
 ################################################################
 # The root as indicated between quotes ("H:/") must be changed according to the local situation
@@ -34,7 +34,7 @@ library(MASS)
 
 
 # DATA UPLOAD #
-rawSVdata <- read.csv(system.file("testdata/only_meansd/only_meansd.csv", package = "shinyshval") , header=T)
+rawSVdata <- read.csv(system.file("test_reference/only_meansd/only_meansd.csv", package = "shinyshval") , header=T)
 
 
 # SETTING THE PARAMETERS

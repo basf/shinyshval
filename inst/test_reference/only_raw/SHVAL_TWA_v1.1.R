@@ -18,7 +18,7 @@ library(MASS)
 ################### WARNING ###############################################################################
 ## PATH VARIABLE. To be adapted according to the local situation
 
-# adapt <- "/home/edisz/gitlab/shval/pkg/inst/testdata/original/twa/"
+# adapt <- "/home/edisz/gitlab/shval/pkg/inst/test_reference/original/twa/"
 
 ################################################################
 # The root as indicated between quotes ("H:/") must be changed according to the local situation
@@ -33,7 +33,7 @@ library(MASS)
 
 
 # DATA UPLOAD #
-rawSVdata <- read.csv(system.file("testdata/only_raw/only_raw.csv", package = "shinyshval") , header=T)
+rawSVdata <- read.csv(system.file("test_reference/only_raw/only_raw.csv", package = "shinyshval") , header=T)
 
 
 # SETTING THE PARAMETERS

@@ -27,6 +27,12 @@ knitr::opts_chunk$set(
 The goal of `shinyshval` is to provide a user-friendly shiny-application  as interface to [SHVAL tool](https://www.efsa.europa.eu/en/supporting/pub/en-623) developed by EFSA.
 It computes shortcut values (SV) as an estimate for the expected oral uptake of plant protection products residues by bees. 
 
+`shinyshval` 
+
+* wraps original scripts `SHVAL_NoT_v1.1.R` and `SHVAL_TWA_v1.1.R` into functions & a package
+* provides sensible default parameters
+* adds a significant amount of tests to check for valid results
+* provides a user-friendly shiny application as interface.
 
 ## Demo
 
@@ -51,6 +57,11 @@ shinyshval::run_app()
 ```
 
 ## Using the backend
+
+`shinyshval` tries to provide sensible default parameters for the
+different scenarious. These have been extracted from the guideline as
+good as possible (see `?default_estimates`). Especially for `RUD` values
+users are welcome to adapt their needs.
 
 We can compute shval values for default parameters of Honey Bee foragers.
 
@@ -93,11 +104,12 @@ quantile(shvals, c(0.025, 0.975))
 In order to ensure consistent results between the `shinyshval` and original EFSA SHVAL tool,
 the package is under version control and an extensive set of tests have been implemented using `testthat`. 
 
-In short, a total number of 192 continuously integrated tests are run on each code change.
+In short, a total number of 234 continuously integrated tests are run on each code change.
 These tests that cover 100% of back-end functionality. 
 
 * 156 for the internal functioning of function for the app
-* 36 tests of 9 scenarios specifically aimed at comparison of results with the official EFSA script.
+* 42 tests comprise of 7 scenarios (6 each) specifically aimed at comparison of results with the original EFSA script
+* 45 tests reproducing tables J4-J8 of the guideline
 
 Because of the non-deterministic nature of the computations, comparisons are made with a precision of $1x10^{-1}$ to $1x10^{-2}$.
 Reference results form the original script can be found in the `inst/test_reference`for each scenario.

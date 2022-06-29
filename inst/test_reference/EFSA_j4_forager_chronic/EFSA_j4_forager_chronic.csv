@@ -1,5 +1,0 @@
-RUDp_R,RUDn_R,CONSp_R,CONSs_R,CNTs_R,PAR,RUDp_E,RUDn_E,CONSp_E,CONSs_E,CNTs_E,DT50_p,DT50_n,t,species,categ
-,,,,,MIN,,,,32,,2,2,10,HB,adult
-,,,,,MAX,,,,128,,,,,,
-,,,,,MEAN(BG),0,2.478,0,,0.15,,,,,
-,,,,,SD,,1.153,,,,,,,,

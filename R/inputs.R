@@ -163,6 +163,7 @@ check_est <- function(x,
 #'   a (=mean), b (=sd), dist (=distribution name),
 #'   and source (='raw', or 'estimate')
 #'   and five rows (RUD_p, RUD_n, CONS_p, CONS_s, CNT_s)
+#' @note data for RUD must be on log-scale
 #' @export
 #' @examples
 #' raw <- structure(list(RUD_p = c(-0.87, -0.43, -0.26, 2.02, -0.27),
