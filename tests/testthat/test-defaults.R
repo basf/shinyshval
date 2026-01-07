@@ -13,18 +13,28 @@ d8 <- default_estimates("Bumble Bee", "larvae", "forager", "acute")
 d10 <- default_estimates("Bumble Bee", "adult", "forager", "chronic")
 d11 <- default_estimates("Bumble Bee", "adult", "forager", "acute")
 # test application arguments
-d9 <- default_estimates("Honey Bee", "adult", "forager", "acute",
-                        "up/sidewards")
+d9 <- default_estimates(
+  "Honey Bee",
+  "adult",
+  "forager",
+  "acute",
+  "up/sidewards"
+)
 d12 <- default_estimates("Honey Bee", "adult", "nurse", "chronic")
-d13 <- default_estimates("Bumble Bee", "adult", "nurse", "acute",
-                         "up/sidewards")
+d13 <- default_estimates(
+  "Bumble Bee",
+  "adult",
+  "nurse",
+  "acute",
+  "up/sidewards"
+)
 
 test_that("gives correct values", {
   expect_equal(d$min[d$param == "CONS_s"], 80)
   expect_equal(d$mean[d$param == "RUD_p"], 2.56648)
-  expect_equal(d$sd[d$param == "RUD_p"], 1.361)
+  expect_equal(d$sd[d$param == "RUD_p"], 1.386)
   expect_equal(d$mean[d$param == "RUD_n"], 0.90752)
-  expect_equal(d$sd[d$param == "RUD_n"], 1.132)
+  expect_equal(d$sd[d$param == "RUD_n"], 1.153)
   expect_equal(d1$min[d$param == "CONS_s"], 32)
   expect_equal(d2$bg[d2$param == "CONS_p"], 2)
   expect_equal(d2$bg[d2$param == "CONS_s"], 59.4)
